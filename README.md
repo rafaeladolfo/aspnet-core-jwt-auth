@@ -1,6 +1,7 @@
 # aspnet-core-jwt-auth
-Simple aspnet core 2.2 authentication example
 ---
+
+Simple aspnet core 2.2 authentication example
 
 #### What are we using here?
 
