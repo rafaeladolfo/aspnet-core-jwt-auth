@@ -16,18 +16,19 @@ using System.Text;
 namespace Auth.BO
 {
     public class UserBO : IUserBO
-    {        
-        private readonly IUserDAO userDAO = new UserDAO();                
+    {
+        private readonly IUserDAO _userDAO;
         private readonly AppSettings _appSettings;
 
-        public UserBO(IOptions<AppSettings> appSettings)
+        public UserBO(IOptions<AppSettings> appSettings, IUserDAO userDAO)
         {
             _appSettings = appSettings.Value;
+            _userDAO = userDAO;
         }
 
         public UserDTO Authenticate(string login, string password)
-        {                        
-            var _users = Mapper.Map<List<UserDTO>>(userDAO.GetAll());
+        {                                    
+            var _users = Mapper.Map<List<UserDTO>>(_userDAO.GetAll());
             var user = _users.SingleOrDefault(a => a.Login == login && a.Password == password);
             
             if (user == null)
@@ -53,7 +54,7 @@ namespace Auth.BO
 
         public IEnumerable<UserDTO> GetAll()
         {            
-            var users = Mapper.Map<List<UserDTO>>(userDAO.GetAll());
+            var users = Mapper.Map<List<UserDTO>>(_userDAO.GetAll());
             return users.Select(a => {
                 a.Password = null;
                 return a;
@@ -62,7 +63,7 @@ namespace Auth.BO
 
         public UserDTO Get(int id)
         {
-            var user = Mapper.Map<UserDTO>(userDAO.Get(id));
+            var user = Mapper.Map<UserDTO>(_userDAO.Get(id));
 
             if (user != null)
                 user.Password = null;

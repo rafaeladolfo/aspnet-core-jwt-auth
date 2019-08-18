@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using Auth.BO;
 using Auth.Core.Interfaces;
+using Auth.DAO;
 using Auth.Helpers;
+using Auth.Interfaces;
 using Auth.Mappers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -55,6 +57,7 @@ namespace Auth.Api
 
             // configure DI for application services
             services.AddScoped<IUserBO, UserBO>();
+            services.AddScoped<IUserDAO, UserDAO>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
