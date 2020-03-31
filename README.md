@@ -1,10 +1,10 @@
 # aspnet-core-jwt-auth
 
-Simple aspnet core 2.2 authentication example
+Simple aspnet core 3.1 authentication example
 
 #### What are we using here?
 
-* .Net Core 2.2
+* .Net Core 3.1
 * Automapper for mapping entities to dto's
 * JWT Authorization
 ---
