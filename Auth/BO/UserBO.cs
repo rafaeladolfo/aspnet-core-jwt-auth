@@ -63,7 +63,7 @@ namespace Auth.BO
 
         public UserDTO Get(int id)
         {
-            var user = Mapper.Map<UserDTO>(_userDAO.Get(id));
+            var user = Mapper.Map<UserDTO>(_userDAO.Get(id));            
 
             if (user != null)
                 user.Password = null;
